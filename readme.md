@@ -4,10 +4,12 @@ A comprehensive guide to essential Linux commands for developers, system adminis
 
 ![Linux Terminal](https://img.shields.io/badge/Linux-Command%20Line-orange)
 ![Bash](https://img.shields.io/badge/Shell-Bash-lightgrey)
+![Version](https://img.shields.io/badge/Version-1.0-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ## Introduction
 
-This repository serves as a practical reference for Linux command-line operations, designed to help you navigate and master the Linux environment efficiently. Whether you're a beginner or an experienced user, this handbook provides clear examples and explanations for common tasks.
+This repository serves as a practical reference for Linux command-line operations, designed to help you navigate and master the Linux environment efficiently. Whether you're a beginner or an experienced user, this handbook provides clear examples and explanations for common tasks in development, DevOps, and system administration workflows.
 
 ## Table of Contents
 
@@ -19,6 +21,7 @@ This repository serves as a practical reference for Linux command-line operation
 - [Networking](#networking)
 - [File Permissions](#file-permissions)
 - [Package Management](#package-management)
+- [Developer Tools](#developer-tools)
 - [Additional Resources](#additional-resources)
 
 ## Basic Navigation
@@ -45,6 +48,7 @@ $ ls -lh            # Human-readable file sizes
 ```
 
 **Output example:**
+
 ```
 Documents/  Downloads/  Pictures/  file.txt
 ```
@@ -135,6 +139,7 @@ $ less large_file.txt
 ```
 
 **Navigation in less:**
+
 - Press `q` to quit
 - Press `/` to search
 - Press `n` for next search result
@@ -320,8 +325,11 @@ For more detailed information, check out the following sections:
 - [File Management Guide](docs/file-management.md)
 - [System Monitoring Commands](docs/system-monitoring.md)
 - [Networking Tools](docs/networking.md)
+- [Package Management](docs/package-management.md)
+- [User Management](docs/user-management.md)
 - [Developer Tools](docs/developer-tools.md)
 - [Everyday Command Cheatsheet](cheatsheets/everyday-commands.md)
+- [Advanced Commands](cheatsheets/advanced-commands.md)
 
 ## Contributing
 
