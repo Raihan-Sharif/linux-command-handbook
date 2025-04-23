@@ -1,27 +1,29 @@
 # Bash Scripting Basics
 
-Bash (Bourne Again SHell) scripting allows you to automate tasks and create powerful workflows in Linux. This guide covers the fundamentals of bash scripting for beginners to intermediate users.
+Bash (Bourne Again SHell) scripting is a powerful way to automate tasks on Linux systems. This guide covers the fundamentals to help you get started with creating effective bash scripts.
 
-## Getting Started
-
-### Creating Your First Script
+## Creating Your First Script
 
 1. Create a new file with a `.sh` extension:
+
    ```bash
    touch myscript.sh
    ```
 
 2. Make it executable:
+
    ```bash
    chmod +x myscript.sh
    ```
 
 3. Add the shebang line at the top:
+
    ```bash
    #!/bin/bash
    ```
 
 4. Add commands and save:
+
    ```bash
    #!/bin/bash
    echo "Hello, World!"
@@ -37,8 +39,6 @@ Bash (Bourne Again SHell) scripting allows you to automate tasks and create powe
 ### Variables
 
 ```bash
-#!/bin/bash
-
 # Variable assignment (no spaces around =)
 name="John"
 age=30
@@ -56,8 +56,6 @@ echo "Hello, ${name}!"
 ### User Input
 
 ```bash
-#!/bin/bash
-
 # Read input with prompt
 echo -n "Enter your name: "
 read name
@@ -75,8 +73,6 @@ echo "Hello, $name! You are $age years old."
 ### Command Substitution
 
 ```bash
-#!/bin/bash
-
 # Old syntax
 kernel_version=`uname -r`
 
@@ -94,8 +90,6 @@ echo "Current directory: $current_dir"
 ### Conditionals (if-else)
 
 ```bash
-#!/bin/bash
-
 # Basic if-else
 if [ "$1" == "hello" ]; then
     echo "Hello to you too!"
@@ -117,55 +111,38 @@ fi
 
 ### Comparison Operators
 
-```bash
-#!/bin/bash
+For numeric comparisons:
 
-# Numeric comparisons
-a=10
-b=20
+- `-eq`: equal to
+- `-ne`: not equal to
+- `-lt`: less than
+- `-le`: less than or equal to
+- `-gt`: greater than
+- `-ge`: greater than or equal to
 
-if [ $a -eq $b ]; then echo "a equals b"; fi
-if [ $a -ne $b ]; then echo "a not equals b"; fi
-if [ $a -lt $b ]; then echo "a less than b"; fi
-if [ $a -le $b ]; then echo "a less than or equal to b"; fi
-if [ $a -gt $b ]; then echo "a greater than b"; fi
-if [ $a -ge $b ]; then echo "a greater than or equal to b"; fi
+For string comparisons:
 
-# String comparisons
-str1="hello"
-str2="world"
-
-if [ "$str1" = "$str2" ]; then echo "Strings are equal"; fi
-if [ "$str1" != "$str2" ]; then echo "Strings are not equal"; fi
-if [ -z "$str1" ]; then echo "String is empty"; fi
-if [ -n "$str1" ]; then echo "String is not empty"; fi
-```
+- `=`: equal to
+- `!=`: not equal to
+- `-z`: string is empty
+- `-n`: string is not empty
 
 ### File Test Operators
 
-```bash
-#!/bin/bash
+- `-e`: file exists
+- `-f`: is a regular file
+- `-d`: is a directory
+- `-r`: is readable
+- `-w`: is writable
+- `-x`: is executable
+- `-s`: file is not empty
+- `-L`: is a symbolic link
 
-file=$1
+## Loops
 
-# File operations
-if [ -e "$file" ]; then echo "File exists"; fi
-if [ -f "$file" ]; then echo "Is a regular file"; fi
-if [ -d "$file" ]; then echo "Is a directory"; fi
-if [ -r "$file" ]; then echo "Is readable"; fi
-if [ -w "$file" ]; then echo "Is writable"; fi
-if [ -x "$file" ]; then echo "Is executable"; fi
-if [ -s "$file" ]; then echo "File is not empty"; fi
-if [ -L "$file" ]; then echo "Is a symbolic link"; fi
-```
-
-### Loops
-
-#### For Loops
+### For Loops
 
 ```bash
-#!/bin/bash
-
 # Basic for loop
 echo "Counting from 1 to 5:"
 for i in 1 2 3 4 5; do
@@ -191,11 +168,9 @@ for file in *.sh; do
 done
 ```
 
-#### While Loops
+### While Loops
 
 ```bash
-#!/bin/bash
-
 # Basic while loop
 count=1
 echo "While loop counting to 5:"
@@ -204,24 +179,16 @@ while [ $count -le 5 ]; do
     ((count++))
 done
 
-# Read lines from a file
+# Reading lines from a file
 echo "Reading lines from file:"
 while read line; do
     echo "Line: $line"
 done < input.txt
-
-# Process output of a command
-echo "Users on the system:"
-who | while read user tty login_time; do
-    echo "User: $user, Terminal: $tty"
-done
 ```
 
-#### Until Loops
+### Until Loops
 
 ```bash
-#!/bin/bash
-
 # Until loop (runs until condition becomes true)
 count=1
 echo "Until loop counting to 5:"
@@ -234,8 +201,6 @@ done
 ### Case Statements
 
 ```bash
-#!/bin/bash
-
 echo -n "Enter a fruit name: "
 read fruit
 
@@ -258,8 +223,6 @@ esac
 ## Functions
 
 ```bash
-#!/bin/bash
-
 # Function definition
 greet() {
     echo "Hello, $1!"
@@ -271,8 +234,6 @@ greet() {
 add() {
     local result=$(($1 + $2))
     echo $result  # Output becomes the return value
-    # Or use return for small integers only (0-255)
-    return $result
 }
 
 # Call functions
@@ -280,16 +241,11 @@ greet "World"
 
 sum=$(add 5 3)
 echo "Sum: $sum"
-
-add 10 20
-echo "Return status: $?"  # Gets the return value
 ```
 
 ## Working with Arrays
 
 ```bash
-#!/bin/bash
-
 # Declare array
 fruits=("apple" "banana" "orange" "grape")
 
@@ -316,18 +272,11 @@ user_info[age]=30
 user_info[city]="New York"
 
 echo "Name: ${user_info[name]}"
-
-# Iterate over keys
-for key in "${!user_info[@]}"; do
-    echo "$key: ${user_info[$key]}"
-done
 ```
 
 ## String Operations
 
 ```bash
-#!/bin/bash
-
 string="Hello, World!"
 
 # Length
@@ -345,17 +294,11 @@ echo "Replace all: ${string//l/L}"  # "HeLLo, World!"
 # Uppercase/Lowercase
 echo "Uppercase: ${string^^}"
 echo "Lowercase: ${string,,}"
-
-# Strip prefix/suffix
-echo "Strip prefix: ${string#Hello, }"  # "World!"
-echo "Strip suffix: ${string%World!}"   # "Hello, "
 ```
 
 ## Error Handling
 
 ```bash
-#!/bin/bash
-
 # Exit on error
 set -e  # Script will exit if any command fails
 
@@ -373,34 +316,18 @@ if ! command -v git &> /dev/null; then
     echo "Git is not installed"
     exit 1
 fi
-
-# Check exit status
-grep "pattern" file.txt
-if [ $? -ne 0 ]; then
-    echo "Pattern not found"
-fi
-
-# Set default values
-filename=${1:-"default.txt"}
 ```
 
 ## Special Variables
 
-```bash
-#!/bin/bash
+- `$0`: Script name
+- `$1`, `$2`, etc.: Command-line arguments
+- `$@`: All arguments
+- `$#`: Number of arguments
+- `$$`: Process ID
+- `$?`: Exit status of last command
 
-echo "Script name: $0"
-echo "First argument: $1"
-echo "Second argument: $2"
-echo "All arguments: $@"
-echo "Number of arguments: $#"
-echo "Process ID: $$"
-echo "Last command exit status: $?"
-```
-
-## Example Scripts
-
-### System Information Script
+## Example: System Information Script
 
 ```bash
 #!/bin/bash
@@ -414,45 +341,6 @@ echo "Memory: $(free -h | grep Mem | awk '{print $2}')"
 echo "Disk usage: $(df -h / | tail -1 | awk '{print $3 "/" $2 " (" $5 ")"}')"
 echo "IP address: $(hostname -I | awk '{print $1}')"
 echo "=================================================="
-```
-
-### Backup Script
-
-```bash
-#!/bin/bash
-
-# Configuration
-backup_dir="/backup"
-source_dir="/var/www"
-date_format=$(date +%Y-%m-%d_%H-%M-%S)
-backup_file="${backup_dir}/backup_${date_format}.tar.gz"
-
-# Check backup directory
-if [ ! -d "$backup_dir" ]; then
-    mkdir -p "$backup_dir"
-    if [ $? -ne 0 ]; then
-        echo "Error: Could not create backup directory"
-        exit 1
-    fi
-fi
-
-# Create backup
-echo "Creating backup of $source_dir..."
-tar -czf "$backup_file" "$source_dir" 2>/dev/null
-
-# Check if backup was successful
-if [ $? -eq 0 ]; then
-    echo "Backup created successfully: $backup_file"
-    echo "Size: $(du -h "$backup_file" | cut -f1)"
-else
-    echo "Error: Backup failed"
-    exit 1
-fi
-
-# Clean old backups (keep last 5)
-cd "$backup_dir" || exit
-ls -1t | grep "^backup_.*\.tar\.gz$" | tail -n +6 | xargs -r rm
-echo "Old backups cleaned up"
 ```
 
 ## Best Practices
@@ -470,8 +358,15 @@ echo "Old backups cleaned up"
 
 ## Tips and Tricks
 
-- **Debug your script**: Add `set -x` to print commands and their arguments as they execute
+- **Debug your script**: Add `set -x` to print commands as they execute
 - **Safer scripts**: Add `set -e` to exit on error, `set -u` to error on undefined variables
 - **Temporary files**: Use `mktemp` to create secure temporary files
-- **Check script syntax**: Use `bash -n script.sh`
 - **Use || and && for conditional execution**: `mkdir dir || echo "Failed to create directory"`
+
+## Further Reading
+
+For more advanced bash scripting techniques, check out:
+
+- The Bash man page: `man bash`
+- [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/)
+- [Bash Hackers Wiki](https://wiki.bash-hackers.org/)

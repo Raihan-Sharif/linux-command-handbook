@@ -441,7 +441,7 @@ $ chown -R www-data:www-data /var/www/html
 
 ## Archive and Compression
 
-```bash
+````bash
 # Create tar archive
 $ tar -cf archive.tar files/
 
@@ -450,3 +450,359 @@ $ tar -czf archive.tar.gz files/
 
 # Extract tar archive
 $ tar -x
+
+
+# Linux Commands for Developers (continued)
+
+## Archive and Compression
+
+```bash
+# Create tar archive
+$ tar -cf archive.tar files/
+
+# Create compressed tar archive (gzip)
+$ tar -czf archive.tar.gz files/
+
+# Extract tar archive
+$ tar -xf archive.tar
+
+# Extract compressed tar archive
+$ tar -xzf archive.tar.gz
+
+# List contents of tar archive
+$ tar -tf archive.tar
+
+# Create zip archive
+$ zip -r archive.zip directory/
+
+# Extract zip archive
+$ unzip archive.zip
+````
+
+## Debugging and Tracing
+
+### strace (System Call Tracer)
+
+```bash
+# Trace system calls of a command
+$ strace command
+
+# Trace specific system calls
+$ strace -e open,read command
+
+# Attach to running process
+$ strace -p process_id
+```
+
+### ltrace (Library Call Tracer)
+
+```bash
+# Trace library calls
+$ ltrace command
+```
+
+### GDB (GNU Debugger)
+
+```bash
+# Debug a program
+$ gdb ./program
+
+# Run program with arguments in gdb
+$ gdb --args ./program arg1 arg2
+
+# Common GDB commands within the debugger:
+# - run (r): Start the program
+# - break (b) function/line: Set breakpoint
+# - next (n): Execute next line
+# - step (s): Step into function
+# - continue (c): Continue execution
+# - print (p) variable: Print variable value
+# - backtrace (bt): Show call stack
+# - quit (q): Exit GDB
+```
+
+## Package Building and Installation
+
+### From Source
+
+```bash
+# Common procedure for building from source
+$ ./configure
+$ make
+$ sudo make install
+
+# Install to custom location
+$ ./configure --prefix=/usr/local
+$ make
+$ sudo make install
+```
+
+### Debian/Ubuntu Packaging
+
+```bash
+# Build Debian package from source
+$ dpkg-buildpackage -b
+
+# Install local .deb package
+$ sudo dpkg -i package.deb
+
+# Fix dependencies after dpkg install
+$ sudo apt-get install -f
+```
+
+### RPM-based Systems
+
+```bash
+# Build RPM package
+$ rpmbuild -ba package.spec
+
+# Install local RPM package
+$ sudo rpm -ivh package.rpm
+```
+
+## Continuous Integration/Deployment Tools
+
+### Jenkins CLI
+
+```bash
+# Download Jenkins CLI
+$ wget http://jenkins-server:port/jnlpJars/jenkins-cli.jar
+
+# Run Jenkins command
+$ java -jar jenkins-cli.jar -s http://jenkins-server:port/ command
+```
+
+### GitHub Actions (Local Testing)
+
+```bash
+# Install act for local GitHub Actions testing
+$ curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+
+# Run GitHub Actions locally
+$ act
+```
+
+## API Development and Testing
+
+### cURL for API Testing
+
+```bash
+# Basic GET request
+$ curl https://api.example.com/endpoint
+
+# POST request with JSON data
+$ curl -X POST -H "Content-Type: application/json" -d '{"key":"value"}' https://api.example.com/endpoint
+
+# Authentication with token
+$ curl -H "Authorization: Bearer token" https://api.example.com/endpoint
+
+# Save response to file
+$ curl -o response.json https://api.example.com/endpoint
+```
+
+### HTTPie (Modern HTTP Client)
+
+```bash
+# Install HTTPie
+$ sudo apt install httpie
+
+# Basic GET request
+$ http https://api.example.com/endpoint
+
+# POST with JSON
+$ http POST https://api.example.com/endpoint key=value
+
+# Authentication
+$ http -a username:password https://api.example.com/endpoint
+```
+
+## Web Server Management
+
+### Apache
+
+```bash
+# Start/stop/restart Apache
+$ sudo systemctl start apache2
+$ sudo systemctl stop apache2
+$ sudo systemctl restart apache2
+
+# Enable/disable site
+$ sudo a2ensite site-name
+$ sudo a2dissite site-name
+
+# Enable/disable module
+$ sudo a2enmod module-name
+$ sudo a2dismod module-name
+
+# Check configuration syntax
+$ sudo apache2ctl configtest
+```
+
+### Nginx
+
+```bash
+# Start/stop/restart Nginx
+$ sudo systemctl start nginx
+$ sudo systemctl stop nginx
+$ sudo systemctl restart nginx
+
+# Test configuration syntax
+$ sudo nginx -t
+
+# Reload configuration without stopping
+$ sudo nginx -s reload
+
+# Enable/disable site
+$ sudo ln -s /etc/nginx/sites-available/site /etc/nginx/sites-enabled/
+$ sudo rm /etc/nginx/sites-enabled/site
+```
+
+## Cloud and Infrastructure Tools
+
+### AWS CLI
+
+```bash
+# Configure AWS CLI
+$ aws configure
+
+# List S3 buckets
+$ aws s3 ls
+
+# Copy file to S3
+$ aws s3 cp file.txt s3://bucket-name/
+
+# List EC2 instances
+$ aws ec2 describe-instances
+
+# Create CloudFormation stack
+$ aws cloudformation create-stack --stack-name mystack --template-body file://template.yaml
+```
+
+### Terraform
+
+```bash
+# Initialize working directory
+$ terraform init
+
+# Plan infrastructure changes
+$ terraform plan
+
+# Apply infrastructure changes
+$ terraform apply
+
+# Destroy infrastructure
+$ terraform destroy
+```
+
+### Kubernetes (kubectl)
+
+```bash
+# View all pods
+$ kubectl get pods
+
+# Get pod details
+$ kubectl describe pod pod-name
+
+# Apply configuration
+$ kubectl apply -f config.yaml
+
+# View logs
+$ kubectl logs pod-name
+
+# Execute command in pod
+$ kubectl exec -it pod-name -- /bin/bash
+
+# View nodes
+$ kubectl get nodes
+```
+
+## Security Tools for Developers
+
+### File and Directory Encryption
+
+```bash
+# Encrypt a file with GPG
+$ gpg -c file.txt
+
+# Decrypt a file
+$ gpg file.txt.gpg
+```
+
+### SSL/TLS
+
+```bash
+# Generate self-signed certificate
+$ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
+
+# View certificate details
+$ openssl x509 -in cert.pem -text -noout
+
+# Check server's certificate
+$ openssl s_client -connect example.com:443
+```
+
+### Security Auditing
+
+```bash
+# Check open ports
+$ sudo nmap -sS localhost
+
+# Check for common vulnerabilities
+$ sudo nmap -sV --script vuln example.com
+
+# Check file permissions in web directory
+$ find /var/www/html -type f -perm /o=w
+```
+
+## Performance Testing and Benchmarking
+
+```bash
+# HTTP benchmarking with ApacheBench
+$ ab -n 1000 -c 100 https://example.com/
+
+# Disk I/O performance
+$ dd if=/dev/zero of=test bs=1G count=1 oflag=direct
+
+# Memory bandwidth
+$ mbw -t 0 1024
+
+# Network performance
+$ iperf -c server_ip
+```
+
+## Miscellaneous Developer Tools
+
+### JSON Processing with jq
+
+```bash
+# Pretty-print JSON
+$ cat file.json | jq .
+
+# Extract specific field
+$ cat file.json | jq '.field'
+
+# Filter array
+$ cat file.json | jq '.items[] | select(.status=="active")'
+```
+
+### Image Processing
+
+```bash
+# Resize image with ImageMagick
+$ convert image.jpg -resize 50% resized.jpg
+
+# Convert between formats
+$ convert image.jpg image.png
+```
+
+### PDF Manipulation
+
+```bash
+# Combine PDFs with pdftk
+$ pdftk file1.pdf file2.pdf cat output combined.pdf
+
+# Extract pages
+$ pdftk input.pdf cat 1-5 output output.pdf
+```
+
+Remember that many of these tools may need to be installed first using your distribution's package manager (apt, yum, etc.). Always refer to the documentation of individual tools for the most up-to-date and detailed information.
